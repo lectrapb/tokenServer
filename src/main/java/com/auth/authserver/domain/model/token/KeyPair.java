@@ -1,4 +1,4 @@
-package com.auth.authserver.domain.model;
+package com.auth.authserver.domain.model.token;
 
 
 

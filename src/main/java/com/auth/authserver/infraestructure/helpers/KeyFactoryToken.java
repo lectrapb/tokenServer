@@ -1,6 +1,6 @@
 package com.auth.authserver.infraestructure.helpers;
 
-import com.auth.authserver.domain.model.KeyPair;
+import com.auth.authserver.domain.model.token.KeyPair;
 
 import java.io.BufferedReader;
 import java.io.StringReader;

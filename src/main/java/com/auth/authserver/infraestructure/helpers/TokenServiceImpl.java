@@ -1,6 +1,6 @@
 package com.auth.authserver.infraestructure.helpers;
 
-import com.auth.authserver.domain.model.KeyPair;
+import com.auth.authserver.domain.model.token.KeyPair;
 import com.auth.authserver.domain.model.gateways.TokenService;
 import org.jose4j.jwa.AlgorithmConstraints;
 import org.jose4j.jws.AlgorithmIdentifiers;
@@ -34,8 +34,6 @@ public class TokenServiceImpl implements TokenService {
          claims.setNotBeforeMinutesInThePast(2); // time before which the token is not yet valid (2 minutes ago)
          claims.setSubject("subject"); // the subject/principal is whom the token is about
          claims.setClaim("uid", uid); // additional claims/attributes about the subject can be added
-         List<String> groups = Arrays.asList("group-one", "other-group", "group-three");
-         claims.setStringListClaim("groups", groups); // multi-valued claims work too and will end up as a JSON array
 
          JsonWebSignature jws = new JsonWebSignature();
 
