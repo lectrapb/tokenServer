@@ -5,7 +5,11 @@ import com.auth.authserver.domain.model.gateways.TokenService;
 import com.auth.authserver.domain.model.gateways.UserRepository;
 import com.auth.authserver.domain.model.login.Login;
 import com.auth.authserver.domain.model.login.LoginRequestDTO;
+import com.auth.authserver.domain.model.token.Token;
 import com.auth.authserver.domain.model.user.User;
+import com.auth.authserver.domain.model.user.UserRequestDTO;
+import com.auth.authserver.domain.model.user.UserResponseDTO;
+import com.auth.authserver.domain.usecases.registeruser.MapperUserRequest;
 
 public class LoginUseCase {
 
@@ -38,5 +42,18 @@ public class LoginUseCase {
             login.setMjs("unauthorized User");
         }
         return login;
+    }
+
+    public UserResponseDTO validateUserByToken(String  token ) throws Exception {
+
+        Token tokenData = tokenService.validateToken(token);
+        User user = null;
+        if(tokenData.isValid()){
+            user = userRepository.findUserById(tokenData.getUid());
+        }else {
+            throw new Exception("token don't exist!");
+        }
+        UserResponseDTO responseDTO = MapperUserRequest.toDTO(user, tokenService);
+        return responseDTO;
     }
 }

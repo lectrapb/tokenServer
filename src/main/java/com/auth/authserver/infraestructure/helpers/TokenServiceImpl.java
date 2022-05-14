@@ -2,6 +2,7 @@ package com.auth.authserver.infraestructure.helpers;
 
 import com.auth.authserver.domain.model.token.KeyPair;
 import com.auth.authserver.domain.model.gateways.TokenService;
+import com.auth.authserver.domain.model.token.Token;
 import org.jose4j.jwa.AlgorithmConstraints;
 import org.jose4j.jws.AlgorithmIdentifiers;
 import org.jose4j.jws.JsonWebSignature;
@@ -56,7 +57,7 @@ public class TokenServiceImpl implements TokenService {
     }
 
     @Override
-    public boolean validateToken(String token) {
+    public Token validateToken(String token) {
         // Use JwtConsumerBuilder to construct an appropriate JwtConsumer, which will
         // be used to validate and process the JWT.
         // The specific validation requirements for a JWT are context dependent, however,
@@ -64,6 +65,7 @@ public class TokenServiceImpl implements TokenService {
         // and audience that identifies your system as the intended recipient.
         // If the JWT is encrypted too, you need only provide a decryption key or
         // decryption key resolver to the builder.
+        Token tokenData = new Token();
         JwtConsumer jwtConsumer = new JwtConsumerBuilder()
                 .setRequireExpirationTime() // the JWT must have an expiration time
                 .setAllowedClockSkewInSeconds(30) // allow some leeway in validating time based claims to account for clock skew
@@ -80,7 +82,9 @@ public class TokenServiceImpl implements TokenService {
             //  Validate the JWT and process it to the Claims
             JwtClaims jwtClaims = jwtConsumer.processToClaims(token);
             String uid = jwtClaims.getClaimValue("uid", String.class);
-            return true;
+            tokenData.setValid(true);
+            tokenData.setUid(uid);
+            return tokenData;
         }
         catch (InvalidJwtException e)
         {
@@ -114,6 +118,7 @@ public class TokenServiceImpl implements TokenService {
             System.out.println("Error "+e.getMessage());
         }
 
-        return false;
+        tokenData.setValid(false );
+        return tokenData;
     }
 }

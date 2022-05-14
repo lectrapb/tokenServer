@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 public class Token {
 
-    private String exp;
-    private String data;
+    private boolean valid;
+    private String  uid;
 }

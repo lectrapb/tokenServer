@@ -23,6 +23,7 @@ public class MapperUser {
         User user = null;
         if(userData != null){
             user = new User();
+            user.setUid(userData.getUid());
             user.setName( userData.getName());
             user.setRole( userData.getRole());
             user.setEmail(userData.getEmail());

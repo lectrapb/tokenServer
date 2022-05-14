@@ -36,7 +36,7 @@ class RegisterUseCaseTest {
 
 
     @Test
-    void create_user_test_ok()  {
+    void create_user_test_ok() throws Exception {
 
         //Given
         UserRequestDTO request = new UserRequestDTO();
