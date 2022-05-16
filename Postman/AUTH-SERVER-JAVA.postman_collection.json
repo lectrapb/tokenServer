@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "31686135-802a-4284-9a58-50c3c99005c7",
+		"name": "AUTH-SERVER-JAVA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "RegisterUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \n     \"name\": \"Test2\",\n     \"email\":\"test2@mail.com\", \n     \"password\":\"123456\" , \n     \"image\":\"gio.jpg\", \n     \"role\": \"USER_ROLE\",\n     \"google\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ValidateUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test2@mail.com\",\n    \"password\":\"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/validate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"validate"
+					]
+				},
+				"description": "Validate user"
+			},
+			"response": []
+		},
+		{
+			"name": "ValidateUserByToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "token",
+							"value": "eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJzZXJ2aWNlLW5hbWUiLCJhdWQiOiJhcHAtand0IiwiZXhwIjoxNjUyNjUwODI3LCJqdGkiOiJaaURjSFVUa2tMUkh0TUhVSS15NTN3IiwiaWF0IjoxNjUyNjUwMjI3LCJuYmYiOjE2NTI2NTAxMDcsInN1YiI6InN1YmplY3QiLCJ1aWQiOiI0ZGM1MDg3MS1hYzE4LTQwZWUtYjIzYy1mZTRkMWYzZjdkYTgifQ.E0NPjonr_J_uvLjX8o2i0XaZ5ciJy2wqjMVEDca3Cka3t5sY62SfORvFwNAHaJDqlX7hy_F5vb2YtJmAQs7WL-q9YL7IqV2APvjFEEEP4Qz4KxAjOkUo2jEBkOFdUyFMtUpoUXQwrv7g2Vz1exB7DqhcJWwDAtA-AFBMqP7EMb9dD6cL70ZpQ7bjL8Ydb-MG3z310EGLgCP2k9ztUgqn8aivx4G-gfFIgyVsIxk4u0hHu2Y8pjAkZcAat-TjdcqNKfxgtynImxbvpDlUcyINMgd8taJzF8ize-jO9vGhQjmZkyrxtR2xunI5oJ0pAs8B3GjwwsL9ak1vSEMbO_OeLQ",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/validate/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"validate",
+						"token"
+					]
+				},
+				"description": "Validate user"
+			},
+			"response": []
+		}
+	]
+}
