@@ -51,7 +51,7 @@ public class LoginUseCase {
         if(tokenData.isValid()){
             user = userRepository.findUserById(tokenData.getUid());
         }else {
-            throw new Exception("token don't exist!");
+            throw new Exception("token doesn't exist!");
         }
         UserResponseDTO responseDTO = MapperUserRequest.toDTO(user, tokenService);
         return responseDTO;

@@ -29,7 +29,7 @@ public class TokenServiceImpl implements TokenService {
          JwtClaims claims = new JwtClaims();
          claims.setIssuer(USER);  // who creates the token and signs it
          claims.setAudience(AUDIENCE); // to whom the token is intended to be sent
-         claims.setExpirationTimeMinutesInTheFuture(10); // time when the token will expire (10 minutes from now)
+         claims.setExpirationTimeMinutesInTheFuture(1); // time when the token will expire (1 minutes from now)
          claims.setGeneratedJwtId(); // a unique identifier for the token
          claims.setIssuedAtToNow();  // when the token was issued/created (now)
          claims.setNotBeforeMinutesInThePast(2); // time before which the token is not yet valid (2 minutes ago)
